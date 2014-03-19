@@ -25,9 +25,9 @@
       firewall_rule "Firewall rule, tcp/#{listen_port}" do
         port      listen_port.to_i
         case proto
-        when tcp
+        when 'tcp'
           protocol  :tcp
-        when udp
+        when 'udp'
           protocol :udp
         end
         direction :in
