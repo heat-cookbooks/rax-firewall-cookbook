@@ -20,8 +20,8 @@
 
 %w( tcp udp ).each do |proto|
   node['rax']['firewall'][proto].each do |listen_port|
-    case node['platform_family']
-    when 'debian'
+    case node['platform']
+    when 'ubuntu'
       firewall_rule "Firewall rule, tcp/#{listen_port}" do
         port      listen_port.to_i
         case proto
@@ -33,7 +33,7 @@
         direction :in
         action    :allow
       end
-    when 'rhel'
+    when 'rhel', 'centos', 'debian'
       iptables_ng_rule "Firewall rule, #{proto}/#{listen_port}" do
         name       'Allow'
         chain      'INPUT'
