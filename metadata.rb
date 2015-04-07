@@ -2,9 +2,8 @@ name    'rax-firewall'
 version '0.1.0'
 license 'Apache 2.0'
 
-%w( firewall iptables-ng ).each do |cb|
-  depends cb
-end
+depends 'iptables-ng'
+depends 'firewall', '0.11.8'
 
 %w( ubuntu debian centos rhel ).each do |os|
   supports os
